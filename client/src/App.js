@@ -13,12 +13,15 @@ import Nonavbar from './components/Nonavbar';
 import Profil from './components/Profil';
 import Settings from './components/Settings';
 import NewAdmin from './components/NewAdmin';
+import RTE from './components/Editor';
+import RST from './components/RST';
 
 function App() {
 
   return (
     <div className="App">
-      <Router>
+      <RST/>
+      {/* <Router>
         <div className="container">
           <Routes>
             <Route element={<Nonavbar />}>
@@ -37,7 +40,7 @@ function App() {
             </Route>
           </Routes>
         </div>
-      </Router>
+      </Router> */}
     </div>
   );
 }

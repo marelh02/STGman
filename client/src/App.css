@@ -1,4 +1,4 @@
-/*(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);*/
+/* (-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
 body {
 	background: linear-gradient(-45deg, #27853A, #399A3C, #6BB230, #A9D120, #C5E06A);
 	background-size: 400% 400%;
@@ -16,4 +16,7 @@ body {
 	100% {
 		background-position: 0% 50%;
 	}
+} */
+.cdx-button{
+	height: 50px;
 }

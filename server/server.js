@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const PORT = 4000;
+const fs = require('fs');
 
 //Mongoose schemas imports
 let Intern=require("./intern.model");
@@ -14,7 +15,7 @@ let Account=require("./account.model");
 const mernRoutes = express.Router();
 
 app.use(cors());
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
 
 mongoose.connect('mongodb://127.0.0.1:27017/mernFirst', { useNewUrlParser: true });
 const connection = mongoose.connection;
@@ -22,6 +23,55 @@ const connection = mongoose.connection;
 connection.once('open', function() {
     console.log("MongoDB database connection established successfully");
 })
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+mernRoutes.route('/editorjs').post(function(req,res){
+    let s=req.body;
+    console.log("test"+JSON.stringify(s));
+    fs.writeFile('C:\\Users\\Marouane\\Desktop\\EMI 2éme A1P\\promises\\putyp.txt', JSON.stringify(s), err => {
+        if (err) {
+            console.log("ayayay");
+          console.error(err);
+        }
+    });
+    console.log("Succez");
+});
+
+mernRoutes.route('/description').post(function(req,res){
+    let s=req.body;
+    // console.log("without stringify\n"+s+"\n\n");
+    console.log("test\n"+JSON.stringify(s)+"\n\n");
+    fs.writeFile('C:\\Users\\Marouane\\Desktop\\EMI 2éme A1P\\promises\\desc.json', JSON.stringify(s), err => {
+        if (err) {
+            console.log("ayayay");
+          console.error(err);
+        }
+    });
+    console.log("desc succez");
+});
+
+mernRoutes.route('/ttts').get(function(req,res){
+    fs.readFile('C:\\Users\\Marouane\\Desktop\\EMI 2éme A1P\\promises\\putyp.txt', 'utf8', (err, data) => {
+        if (err) {
+          console.error(err);
+          return;
+        }
+        res.send(data);
+        console.log("data sent");
+      });
+});
+
+mernRoutes.route('/ard').get(function(req,res){
+    fs.readFile('C:\\Users\\Marouane\\Desktop\\EMI 2éme A1P\\promises\\desc.json', 'utf8', (err, data) => {
+        if (err) {
+          console.error(err);
+          return;
+        }
+        res.send(data);
+        console.log("data sent man");
+      });
+});
 
 ////////////////////////////////////////////////Login API////////////////////////////////////////////////
 
